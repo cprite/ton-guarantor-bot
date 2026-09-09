@@ -50,6 +50,10 @@ packages = ["src/guarantor"]
 asyncio_mode = "auto"
 testpaths = ["tests"]
 addopts = "-q"
+# The tests import shared fixtures as `tests.conftest`, so the repo root has to
+# be importable. `python -m pytest` adds it via the working directory; the bare
+# `pytest` entry point does not, which is what CI runs.
+pythonpath = ["."]
 
 [tool.ruff]
 line-length = 110
