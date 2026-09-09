@@ -1,0 +1,13 @@
+services:
+  guarantor:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_PATH: /data/guarantor.db
+    volumes:
+      - guarantor-data:/data
+    # The bot polls Telegram and the TON API; it needs no inbound ports.
+
+volumes:
+  guarantor-data:
